@@ -10,6 +10,20 @@ their demographics to a database, and exposes the data through a REST API.
 - Call the number above to register as a patient; then check
   `GET /patients` on the API base URL to see the saved record.
 
+## Features
+
+- **Natural voice registration** — the agent collects all required
+  demographics conversationally, confirms everything back to the caller,
+  and only saves after explicit confirmation.
+- **Returning-caller detection** — as soon as a phone number is collected,
+  the agent checks for an existing patient with that number and offers to
+  update the record instead of creating a duplicate.
+- **Dashboard** — `dashboard.html` is a lightweight, read-only view of all
+  registered patients for quickly checking what's in the database without
+  calling the API directly. Open the file in any browser; it talks to the
+  live API above and auto-refreshes every 15 seconds. No build step or
+  server needed — it's a single static HTML file.
+
 ## Architecture
 
 ```
@@ -122,6 +136,6 @@ of stdout.
 
 - Add a shared-secret header check on the API so only the voice platform (and
   authenticated dashboard users) can hit it.
-- Build the bonus dashboard (simple read-only patient list UI).
 - Store a call transcript/summary linked to each `patient_id`.
 - Add automated integration tests for the API layer.
+- Add appointment scheduling and multi-language support to the conversation flow.
